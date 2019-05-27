@@ -4,3 +4,5 @@ function solve(par1, par2, par3) {
 }
 
 solve('a','b','c');   
+
+
