@@ -1,5 +1,6 @@
 function solve(arr1, arr2) {
     let newArr = [];
+    let counter = 0;
     for (let i = 0; i < arr1.length; i++) {
         for (let j = 0; j < arr2.length; j++) {
             if (i % 2 == 0 && j % 2 == 0) {
@@ -9,9 +10,10 @@ function solve(arr1, arr2) {
                 let concatElements = arr1[i] + arr2[j];
                 newArr.push(concatElements);
             }
+            i++;
         }
     }
-    console.log(newArr);
+    console.log(newArr.join(" - "));
     
 }
 
