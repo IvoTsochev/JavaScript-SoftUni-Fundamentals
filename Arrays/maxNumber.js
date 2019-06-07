@@ -1,23 +1,17 @@
-function solve(arr) {
-    let topInteger = [];
-
-    for (let i = 0; i < arr.lenght; i++) {
-        let currentEl = arr[i];
-        let isTopInteger = true;
-
-        for (let j = i + 1; j < arr.lenght; j++) {
-            let nextEl = arr[j];
-
-            if (currentEl <= nextEl) {
-                isTopInteger = false;
-                break;
-            }
-        }
-        if (isTopInteger) {
-            topInteger.push(currentEl);
-        }
+function printMaxNums(inputArr) {
+    let array = inputArr;
+    let store = [];
+    let highestNum = Math.max(...array);
+  
+    for (let i = array.indexOf(highestNum); i < array.length; i++) {
+      const element = array[i];
+      let check = array.slice(i);
+      if (Math.max(...check) === element && !store.includes(element)) {
+        store.push(element);
+      }
     }
-    console.log(topInteger.join(" "));
-}
-
-solve([1, 4, 3, 2]);
+  
+    console.log(store.join(' '));
+  
+  }
+  printMaxNums([41, 41, 34, 20]);
