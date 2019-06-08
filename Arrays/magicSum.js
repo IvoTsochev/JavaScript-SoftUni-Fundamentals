@@ -1,17 +1,19 @@
-function solve(arr, num) {
-    let newNum = num;
-    let removeTheLastElement = arr.pop();
-    newArr = arr.toString().split(" ");
-    for (let index in newArr) {
-        let shiftedElement = Number(newArr.shift());
-        for (let i in newArr) {
-            if (Number(shiftedElement) + Number(newArr[i]) == Number(newNum)) {
-                console.log(`${shiftedElement} ${newArr[i]}`);
-                
-            }
+function magicSum(inputArr, number) {
+
+    let numToCompare = Number(number);
+  
+    for (let i = 0; i < inputArr.length; i++) {
+      const currentElement = inputArr[i];
+      for (let j = i + 1; j < inputArr.length; j++) {
+        const nextElement = inputArr[j];
+        const isConditionTrue = currentElement + nextElement === numToCompare;
+        if (isConditionTrue) {
+          console.log(`${currentElement} ${nextElement}`);
         }
+      }
     }
-
-}
-
-solve(['1 7 6 2 19 23', '8']);
+  }
+  magicSum(
+    [1, 7, 6, 2, 19, 23],
+    8
+  );
