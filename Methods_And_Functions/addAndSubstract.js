@@ -1,11 +1,15 @@
-function sumAndSubstract(numOne, numTwo, numThree) {
-    let sumFirstTwoElements = (a, b) => a + b;
-    let subFromTheSum = (a, b) => sumFirstTwoElements - numThree;
+function solve(a, b, c) {
+    let sum = (firstNum, secondNum) => firstNum + secondNum;
+    let subtract = (result, thirdNum) => result - thirdNum;
 
-    return subFromTheSum();
+    let result = sum(a, b);
+    // console.log(subtract(result, c));
+
+    let finalOutcome = (a, b) => a - b;
+
+    return finalOutcome(result, c);
+    
 }
 
-console.log(sumAndSubstract(23,
-    6,
-    10
-    ));
+console.log(solve(23,6,10));
+
