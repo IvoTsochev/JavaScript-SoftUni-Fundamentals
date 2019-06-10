@@ -8,21 +8,18 @@ function solve(firstChar, secondChar) {
         newNumArr += i + " ";
     }
 
-    newNumArr = newNumArr.trim();
-
     let splittedArr = newNumArr.split(" ");
     // console.log(splittedArr);
 
     let result = "";
     
     for (let j = 0; j <= splittedArr.length; j++) {
-        result += (String.fromCharCode(splittedArr[j]));
+        result += " " + (String.fromCharCode(splittedArr[j]));
     }
 
-    return result.join(" ");
+    return result;
     
 
 }
 
-console.log(solve('#', ':'));
-
+console.log(solve('C', '#'));
