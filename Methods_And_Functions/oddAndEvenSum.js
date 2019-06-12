@@ -1,20 +1,29 @@
 function oddAndEvenSum(num) {
-    let numToString = num.toString().split("");
-    let evenSum = 0;
+    num = num.toString();
     let oddSum = 0;
-
-    for (let i = 0; i < numToString.length; i++) {
-        if (i % 2 === 0) {
-            evenSum += Number(numToString[i]);
-        } else {
-            oddSum += Number(numToString[i]);
-        }
-        
+    let evenSum = 0;
+    
+    function isOdd(n) {
+        return n % 2 !== 0;
     }
 
-    
+    function isEven(n) {
+        return n % 2 === 0;
+    }
 
-    console.log(`Odd sum = ${evenSum}, Even sum = ${oddSum}`);
+    for (let i = 0; i < num.length; i++) {
+        let digit = Number(num[i]);
+
+        if (isOdd(digit)) {
+            oddSum += digit;
+        }
+
+        if (isEven(digit)) {
+            evenSum += digit;
+        }
+    }
+
+    console.log(`Odd sum = ${oddSum}, Even sum = ${evenSum}`);
     
 }
 

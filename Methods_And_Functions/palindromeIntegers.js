@@ -1,17 +1,22 @@
-function checkIfPalidrome(arr) {
-    let arrToString = arr.toString().split(",");
+function solve(input) {
     
-    for (let i = 0; i < arrToString.length; i++) {
-        let currentElement = arrToString[i].split("").reverse();
-        // console.log(currentElement.reverse());
+    for (let num of input) {
+        console.log(isPalindrome(num));
         
-        let reversedCurrentElement = "";
-        for (const index in currentElement) {
-            reversedCurrentElement += currentElement[index]
+    }
+
+
+    function isPalindrome(num) {
+        let reversedNum = "";
+        let numAsStr = num.toString();
+
+        for (let i = numAsStr.length - 1; i >= 0; i--) {
+            reversedNum += numAsStr[i];
         }
-        console.log(reversedCurrentElement);
+
+        return numAsStr === reversedNum;
     }
     
 }
 
-checkIfPalidrome([123,323,421,121])
+solve([123,323,421,121])

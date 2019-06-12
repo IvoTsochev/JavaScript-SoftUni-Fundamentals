@@ -2,24 +2,16 @@ function solve(firstChar, secondChar) {
     let firstCode = firstChar.charCodeAt(0);
     let secondCode = secondChar.charCodeAt(0);
 
-    let newNumArr = [];
+    let start = Math.min(firstCode, secondCode);
+    let end = Math.max(firstCode, secondCode);
 
-    for (let i = firstCode + 1; i < secondCode; i++) {
-        newNumArr += i + " ";
+    let characters = [];
+    for (let i = start + 1; i < end; i++) {
+        let currentCharacter = String.fromCharCode(i);
+        characters.push(currentCharacter);
     }
 
-    let splittedArr = newNumArr.split(" ");
-    // console.log(splittedArr);
-
-    let result = "";
-    
-    for (let j = 0; j <= splittedArr.length; j++) {
-        result += " " + (String.fromCharCode(splittedArr[j]));
-    }
-
-    return result;
-    
-
+    console.log(characters.join(" "));
 }
 
 console.log(solve('C', '#'));
