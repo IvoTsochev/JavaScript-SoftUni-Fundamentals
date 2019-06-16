@@ -15,7 +15,7 @@ function oddNumbers(arr) {
     // console.log(doubleNums);
 
     doubleNums = doubleNums.reverse().toString().replace(/,/g, " ");
-    console.log(doubleNums).sort;
+    console.log(doubleNums);
 
 
     
