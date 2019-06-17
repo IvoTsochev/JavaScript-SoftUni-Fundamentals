@@ -1,0 +1,41 @@
+.indexOf(num) - подаваме число, за да намерим индекса на числото; винаги връща най-левия ако има два поварящи символа
+
+.includes(num) - дава true или false дали числото съществува в масива
+
+.push(num) - вкарва число в края на масива
+
+.unshift(num) - вкарва число в началото на масива
+
+.pop(num) - маха числото накрая на масива
+
+.shift(num) - маха числото в началото на масива
+
+.slice(start, end) - копира част от оригиналния масив и го поставя в нов
+
+.splice(start, deleteCount, insertElement) - реже от оригиналния масив и поставя в нов
+
+.map() - минава през всеки елемент от масива и може да го конвертира (примерно от стринг към числа)
+let mappedArr = arr.map((a) => Number(a));
+let mappedArr = arr.map(Number);
+-----------------
+let mappedArr = arr.map((a) => а * 3);
+
+.filter() - когато искаме да вземем стойности от масив по даден критерии
+let filteredArr = arr.filter((a) => a % 2 === 0);
+
+.sort() - сортиране
+//числа
+let nums = [`1`, `22`, `2`, `3`, `33`];
+let sortedNums = nums.map(Number).sort((a, b) => a - b); (<- възходящ ред) (за низходящ b - a) 
+
+//стрингове
+let names = [`Alpha`, `Gamma`, `Beta`];
+let sortedNames = names.sort((a, b) => a.localeCompare(b));
+
+
+
+
+
+
+
+
