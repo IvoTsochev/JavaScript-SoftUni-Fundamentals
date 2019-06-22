@@ -1,7 +1,7 @@
 //първо сортираме по низходящо и полсе shift и pop
 function solve(input) {
     let inputCopy = input.slice().sort((a, b) => b - a);
-    console.log(inputCopy);
+    // console.log(inputCopy);
     let newArr = [];
     
 
