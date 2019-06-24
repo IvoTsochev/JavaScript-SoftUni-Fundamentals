@@ -1,11 +1,13 @@
 function solve(arr1, arr2) {
     for (let i = 0; i < arr1.length; i++) {
-        if (arr2.includes(arr1[i]) == true) {
-            console.log(arr1[i]);
-            
+        for (let j = 0; j < arr2.length; j++) {
+            if (arr1[i] === arr2[j]) {
+                console.log(arr1[i]);
+                // console.log(j);
+            }
         }
     }
 }
 
-solve(["Hey", "hello", 2, 4, "Pesho", "e"], 
-["Pecho", 10, "hey", 4, "hello", "2"]);
+solve(  ["S", "o", "f", "t", "U", "n", "i", " "],
+        ["s", "o", "c", "i", "a", "l"]);
