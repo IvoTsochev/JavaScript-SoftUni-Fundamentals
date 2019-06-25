@@ -1,72 +1,61 @@
-function breadFactory(input) {
-
+function solve(arr) {
+  let events = arr[0].split('|');
   let energy = 100;
   let coins = 100;
-  let events = input[0].split('|');
-
-
+  let currEnergy;
   for (let i = 0; i < events.length; i++) {
-    let [command, number] = events[i].split('-');
-    //parseToNum
-    number = Number(number);
+      let splited = events[i].split('-');
+      let command = splited[0];
+      let number = +splited[1];
 
-    let isRest = command === 'rest';
-    if (isRest) {
-      let energyGained = rest(energy, number);
-      if (energyGained > 0) {
-        energy += energyGained;
-      }
-      console.log(`You gained ${energyGained} energy.`);
-      console.log(`Current energy: ${energy}.`);
-    }
-    let isOrder = command === 'order';
-    if (isOrder) {
-      let orderOutcome = order(energy, number);
-      if (orderOutcome !== 'You had to rest!') {
-        console.log(orderOutcome);
-        coins += number;
-        energy -= 30;
-      } else {
-        console.log(orderOutcome);
-        energy += 50;
-      }
-    }
-    let isIngredient = !isRest && !isOrder;
-    if (isIngredient) {
-      let ingredient = command;
-      let areCoinsEnough = coins - number > 0;
-      if (areCoinsEnough) {
-        console.log(`You bought ${ingredient}.`);
-        coins -= number;
-      } else {
-        return console.log(`Closed! Cannot afford ${ingredient}.`);
+      switch (command) {
+          case 'rest':
+              currEnergy = energy;
+              energy += number;
+              if (energy < 100) {
+                  console.log(`You gained ${number} energy.`);
+                  console.log(`Current energy: ${energy}.`);
 
+              }
+              else {
+
+                  console.log(`You gained ${100 - currEnergy} energy.`);
+                  console.log(`Current energy: 100.`);
+                  energy = 100;
+              }
+              break;
+          case 'order':
+              if (energy >= 30) {
+                  console.log(`You earned ${number} coins.`);
+                  coins += number;
+                  energy -= 30;
+
+              }
+              else {
+                  energy += 50;
+                  console.log(`You had to rest!`);
+              }
+              break;
+          default:
+              if (coins - number > 0) {
+                  console.log(`You bought ${command}.`);
+                  coins -= number;
+              }
+              else {
+                  console.log(`Closed! Cannot afford ${command}.`);
+                  return;
+              }
+              break;
       }
-    }
   }
-
   console.log(`Day completed!`);
   console.log(`Coins: ${coins}`);
   console.log(`Energy: ${energy}`);
-
-  function order(currentEnrg, number) {
-    let energy = currentEnrg - 30;
-    if (energy > 0) {
-      return `You earned ${number} coins.`;
-    } else {
-      return `You had to rest!`;
-    }
-  }
-
-  function rest(currentEnrg, number) {
-    let current = currentEnrg;
-    let addedEnergy = currentEnrg + number;
-
-    if (addedEnergy <= 100) {
-      return number;
-    } else {
-      return 100 - current;
-    }
-  }
 }
+
+
+solve(['rest-2|order-10|eggs-100|rest-10']);
+
+
+// solve(['order-10|order-10|order-10|flour-100|order-100|oven-100|order-1000'])
 breadFactory(['rest-101|order-20|eggs-120|rest-10']);

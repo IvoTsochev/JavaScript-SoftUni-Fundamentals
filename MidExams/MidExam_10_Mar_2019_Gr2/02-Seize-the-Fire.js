@@ -1,53 +1,57 @@
-function siezeFire(input) {
-
-  let firesToSieze = input.shift().split('#');
-  let water = Number(input.shift());
-  let cellsSiezed = [];
-  let totalFireSiezed = 0;
+function solve(input) {
   let effort = 0;
+  let cells = [];
+  let totalFire = 0;
+  let splited = input.shift().split('#');
+  let amountOfWater = input.shift();
+  for (let i = 0; i < splited.length; i++) {
 
-  for (let i = 0; i < firesToSieze.length; i++) {
-    let [typeOfFire, valueOfCell] = firesToSieze[i].split(' = ');
-    valueOfCell = Number(valueOfCell);
+      let [command, value] = splited[i].split(' = ')
+      value = +value;
+      if (amountOfWater < value) {
+          continue;
+      }
+      switch (command) {
+          case 'High':
+              if (value >= 81 && value <= 125) {
+                  cells.push(value);
+                  amountOfWater -= value;
+                  effort += (value * 0.25);
+                  totalFire += value;
+              }
+              break;
 
-    let isFireHigh = valueOfCell >= 81 && valueOfCell <= 125 && typeOfFire === 'High';
-    let isFireMedium = valueOfCell >= 51 && valueOfCell <= 80 && typeOfFire === 'Medium';
-    let isFireLow = valueOfCell >= 1 && valueOfCell <= 50 && typeOfFire === 'Low';
-    let isWaterEnough = water - valueOfCell > 0;
+          case 'Medium':
+              if (value >= 51 && value <= 80) {
+                  cells.push(value);
+                  amountOfWater -= value;
+                  effort += (value * 0.25);
+                  totalFire += value;
+              }
+              break;
 
-    if (isFireLow && isWaterEnough) {
-      water -= valueOfCell;
-      cellsSiezed.push(valueOfCell);
-      totalFireSiezed += valueOfCell;
-      effort += valueOfCell * 0.25;
-    }
-    if (isFireMedium && isWaterEnough) {
-      water -= valueOfCell;
-      cellsSiezed.push(valueOfCell);
-      totalFireSiezed += valueOfCell;
-      effort += valueOfCell * 0.25;
-    }
-    if (isFireHigh && isWaterEnough) {
-      water -= valueOfCell;
-      cellsSiezed.push(valueOfCell);
-      totalFireSiezed += valueOfCell;
-      effort += valueOfCell * 0.25;
-    }
+          case 'Low':
+              if (value >= 1 && value <= 50) {
+                  cells.push(value);
+                  amountOfWater -= value;
+                  effort += (value * 0.25);
+                  totalFire += value;
+              }
+              break;
+      }
   }
-
-  console.log(`Cells:`);
-  cellsSiezed.forEach(element => {
-    console.log(` - ${element}`);
-
-  });
-
+  console.log(`Cells:`)
+  for (let cell of cells) {
+      console.log(` - ${cell}`);
+  }
   console.log(`Effort: ${effort.toFixed(2)}`);
-  console.log(`Total Fire: ${totalFireSiezed}`);
+  console.log(`Total Fire: ${totalFire}`);
 
 
 }
-siezeFire(
-  ['High = 150#Low = 55#Medium = 86#Low = 40#High = 110#Medium = 77',
-    '220'
-  ]
-);
+solve(['High = 150#Low = 55#Medium = 86#Low = 40#High = 110#Medium = 77',
+  220])
+
+  // solve(['High = 89#Meduim = 53#Low = 28#Medium = 77#Low = 23',
+  //     1250
+  //     ])

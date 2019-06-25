@@ -1,26 +1,26 @@
 function solve(arr) {
     let newArr = arr.slice();
-    let originalSum = 0;
-    let newSum = 0;
-
-    for (let nums of arr) {
-        originalSum += nums;
+    let arrSum = 0;
+    let newArrSum = 0;
+    //sum of the original array
+    for (let i = 0; i < arr.length; i++) {
+        arrSum += arr[i];
     }
-
-    for (let i = 0; i < newArr.length; i++) {
-        let num = Number(newArr[i]);
-        if (num % 2 == 0) {
-            newArr[i] = newArr[i] + i;
-        } else {
-            newArr[i] = newArr[i] - i;
+    for (let index in newArr) {
+        if (newArr[index] % 2 == 0) {
+            newArr[index] += Number(index);
+        } else if (newArr[index] % 2 != 0) {
+            newArr[index] -= Number(index);
         }
-        newSum += num;
     }
-
-
+    //sum of the new array
+    for (let i = 0; i < newArr.length; i++) {
+        newArrSum += newArr[i];
+    }
     console.log(newArr);
-    console.log(newSum);
-    console.log(originalSum); 
+    console.log(arrSum);
+    console.log(newArrSum);
+    
 }
 
-solve([5, 15, 23, 56, 35]);
+solve([5,15,23,56,35]);

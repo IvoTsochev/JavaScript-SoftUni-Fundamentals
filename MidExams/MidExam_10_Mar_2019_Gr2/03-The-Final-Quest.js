@@ -1,58 +1,61 @@
-function theFinalQuest(input) {
+function solve(input) {
+  let collectionOfWords = input.shift().split(' ');
 
-  let wordsCollection = input[0].split(' ');
+  for (let i = 0; i < input.length; i++) {
+      let splited = input[i].split(' ');
+      let [command, value, anotherValue] = splited;
 
-  for (let i = 1; i < input.length; i++) {
-    let [command, firstElement, secondElement] = input[i].split(' ');
-    if (command == 'Stop') {
-      console.log(wordsCollection.join(' '));
-      break;
-    }
+      switch (command) {
+          case 'Delete':
+              value = +value;
+              if (value >= 0 && value < collectionOfWords.length - 1) {
+                    collectionOfWords.splice(value + 1, 1);
+              }
+            
+              break;
+          case 'Swap':
+              let indexOfFirstValue = collectionOfWords.indexOf(value);
+              let indexOfSecondValue = collectionOfWords.indexOf(anotherValue);
+              if (collectionOfWords.includes(value)
+                  && collectionOfWords.includes(anotherValue)) {
+                  collectionOfWords.splice(indexOfFirstValue, 1, anotherValue)
+                  collectionOfWords.splice(indexOfSecondValue, 1, value)
+              }
+              break;
+          case 'Put':
+              anotherValue = +anotherValue
+              if (anotherValue > 0 && 
+                  anotherValue <= collectionOfWords.length +1) {
+                  collectionOfWords.splice(anotherValue - 1, 0, value)
+              }
 
-    if (command === 'Delete') {
-      firstElement = Number(firstElement) + 1;
-      if (wordsCollection[firstElement] !== undefined) {
-        wordsCollection.splice(firstElement, 1);
+              break;
+          case 'Replace':
+              let indexOfSecondWord = collectionOfWords.indexOf(anotherValue)
+              if (collectionOfWords.includes(anotherValue)) {
+                  collectionOfWords.splice(indexOfSecondWord, 1, value)
+              }
+              break;
+              case 'Sort':
+              collectionOfWords.sort((a,b) => b.localeCompare(a))
+              break;
+          case 'Stop':
+              console.log(collectionOfWords.join(' '));
+
+              break;
       }
-    }
-
-    if (command === 'Swap') {
-      let areWordsIncluded =
-        wordsCollection.includes(firstElement) &&
-        wordsCollection.includes(secondElement);
-      if (areWordsIncluded) {
-        let firstElemIndex = wordsCollection.indexOf(firstElement),
-          secondElemIndex = wordsCollection.indexOf(secondElement);
-        [wordsCollection[firstElemIndex], wordsCollection[secondElemIndex]] = [wordsCollection[secondElemIndex], wordsCollection[firstElemIndex]];
-
-      }
-    }
-
-    if (command === 'Put') {
-      secondElement = Number(secondElement) - 1;
-      if (wordsCollection[secondElement] !== undefined) {
-
-        wordsCollection.splice(secondElement, 0, firstElement);
-      }
-    }
-    if (command === 'Sort') {
-      wordsCollection.reverse();
-    }
-
-    if (command === 'Replace') {
-      if (wordsCollection.includes(secondElement)) {
-        let indexOfSecondElem = wordsCollection.indexOf(secondElement);
-        wordsCollection[indexOfSecondElem] = firstElement;
-      }
-    }
   }
 }
-theFinalQuest(
-  ['Congratulations! You last also through the have challenge!',
-    'Swap have last',
-    'Replace made have',
-    'Delete 2',
-    'Put it 4',
-    'Stop'
-  ]
-);
+solve(['Congratulations! You last also through the have challenge!',
+  'Swap have last',
+  'Replace made have',
+  'Delete 2',
+  'Put it 4',
+  'Stop'])
+
+  // solve(['This the my quest! final',
+  //     'Put is 2',
+  //     'Swap final quest!',
+  //     'Delete 2',
+  //     'Stop']
+  //     )

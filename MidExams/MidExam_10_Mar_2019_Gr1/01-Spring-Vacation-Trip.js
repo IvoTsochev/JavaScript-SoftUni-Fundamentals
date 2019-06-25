@@ -1,49 +1,75 @@
-function springVacationCost(input) {
-  input = input.map(Number);
-  let daysCount = input.shift();
-  let budget = input.shift();
-  let groupSize = input.shift();
-  let fuelPricePerKm = input.shift();
-  let foodCostTotal = input.shift() * groupSize * daysCount;
-  let accommodationCostTotal = input.shift() * groupSize * daysCount;
-  if (groupSize > 10) {
-    accommodationCostTotal -= accommodationCostTotal * 0.25;
-  }
-  let totalCost = accommodationCostTotal + foodCostTotal;
-  let counter = 1;
+function solve(arr) {
+  let days = arr.shift();
+  let budget = arr.shift();
+  let groupPeople = arr.shift();
+  let fuel = arr.shift();
+  let food = arr.shift();
+  let priceForRoom = arr.shift();
+  let travelledDistance = 0;
 
-  for (let i = 0; i < input.length; i++, counter++) {
-    const fuelForGivenDay = input[i] * fuelPricePerKm;
-    totalCost += fuelForGivenDay;
-    if (counter % 3 == 0 || counter % 5 == 0) {
-      totalCost += totalCost * 0.40;
-    }
-    if (counter % 7 == 0) {
-      totalCost -= totalCost / groupSize;
-    }
+  let recievedMoney = 0;
+  let consumedFuel = 0;
+
+  if (groupPeople > 10) {
+      priceForRoom *= 0.75;
+  }
+  let foodExpenses = food * groupPeople * days;
+  let priceHotelAllNights = priceForRoom * groupPeople * days;
+  let currentExpenses = foodExpenses + priceHotelAllNights;
+  for (let i = 1; i <= arr.length; i++) {
+      travelledDistance = arr[i-1];
+      consumedFuel = travelledDistance * fuel;
+      currentExpenses += consumedFuel;
+      if (i % 7 == 0) {
+          recievedMoney = currentExpenses / groupPeople;
+          currentExpenses -= recievedMoney;
+      }
+      else if (i % 5 == 0) {
+          currentExpenses = currentExpenses + (currentExpenses * 0.4);
+      }
+      else if (i % 3 == 0) {
+          currentExpenses = currentExpenses + (currentExpenses * 0.4);
+      }
+      if (currentExpenses > budget) {
+          console.log(`Not enough money to continue the trip. You need ${(currentExpenses - budget).toFixed(2)}$ more.`);
+          return;
+      }
   }
 
-  let moneyLeft = budget - totalCost;
-  if (moneyLeft >= 0) {
-    console.log(`You have reached the destination. You have ${moneyLeft.toFixed(2)}$ budget left.`);
-  } else {
-    console.log(`Not enough money to continue the trip. You need ${Math.abs(moneyLeft).toFixed(2)}$ more.`);
-  }
+  console.log(`You have reached the destination. You have ${(budget-currentExpenses).toFixed(2)}$ budget left.`);
 
 }
-springVacationCost(
-  ['7',
-    '12000',
-    '5',
-    '1.5',
-    '10',
-    '20',
-    '512',
-    '318',
-    '202',
-    '154',
-    '222',
-    '108',
-    '123'
-  ]
-);
+
+
+
+// solve([7,
+//     12000,
+//     5,
+//     1.5,
+//     10,
+//     20,
+//     512,
+//     318,
+//     202,
+//     154,
+//     222,
+//     108,
+//     123
+// ])
+
+solve([10,
+  20500,
+  11,
+  1.2,
+  8,
+  13,
+  100,
+  150,
+  500,
+  400,
+  600,
+  130,
+  300,
+  350,
+  200,
+  300])
