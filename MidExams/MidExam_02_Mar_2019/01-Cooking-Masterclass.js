@@ -1,50 +1,31 @@
-function cookingMasterclass(input) {
+function solve(arr) {
+  let budget = +arr.shift();
+  let studentsCount = +arr.shift();
+  let flourPrice = +arr.shift();
+  let eggPrice = +arr.shift();
+  let apronPrice = +arr.shift();
 
-  let budget = +input[0];
-  let studentsCount = +input[1];
-  let flourCost = +input[2];
-  let eggCost = +input[3];
-  let apronCost = +input[4];
+  let allExpenses = apronPrice * (studentsCount + Math.ceil(studentsCount * 0.2)) + eggPrice * 10 *
+      studentsCount + flourPrice * (studentsCount - (Math.floor(studentsCount / 5)));
 
-  let totalCost = 0;
 
-  for (let i = 1; i <= studentsCount; i++) {
-
-    if (i % 5 === 0) {
-      totalCost += eggCost * 10;
-    } else {
-      totalCost += flourCost;
-      totalCost += eggCost * 10;
-    }
-  }
-
-  totalCost += apronCost * (Math.ceil(studentsCount + studentsCount * 0.20));
-
-  if (totalCost <= budget) {
-    console.log(`Items purchased for ${totalCost.toFixed(2)}$.`);
+  if (allExpenses <= budget) {
+      console.log(`Items purchased for ${allExpenses.toFixed(2)}$.`);
   } else {
-    console.log(`${Math.abs(budget - totalCost).toFixed(2)}$ more needed.`);
+      console.log(`${(allExpenses - budget).toFixed(2)}$ more needed.`);
   }
+
 }
-cookingMasterclass([
-  100,
-  25,
-  4.0,
-  1.0,
-  6.0
-]);
 
-//[budget, students, flour, egg, apron]
+solve([
+      //budget
+      '50',
+      //students
+      '2',
+      //price for flour per package
+      '1.0',
+      //price for a egg
+      '0.10',
+      //price of apron
+      '10.0' ])
 
-
-//for (let i = 1; i <= studentsCount; i++) {
-//
-//  if (i % 5 === 0) {
-//    totalCost += eggCost;
-//    totalCost += apronCost;
-//  } else {
-//    totalCost += flourCost;
-//    totalCost += eggCost;
-//    totalCost += apronCost;
-//  }
-//}
