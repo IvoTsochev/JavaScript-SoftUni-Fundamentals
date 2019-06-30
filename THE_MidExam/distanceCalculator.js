@@ -5,23 +5,26 @@ function fuckinDistance(arr) {
 
     let distanceTraveled = 0;
 
-    for (let i = 0; i < steps; i++) {
-        if (i % 5 === 0) {
-            distanceTraveled = distanceTraveled + (stepLength * 0.7);
+    let counter = 0;
+
+    while (counter < steps) {
+        if (counter % 5 === 0) {
+            distanceTraveled += stepLength * 0.7;
         } else {
             distanceTraveled += stepLength;
         }
-        
+        counter++
     }
 
-    let percentage = (distanceTraveled * neededDistance) / 100;
-    console.log(percentage / 100);
+    let distanceTraveledInMeteres = distanceTraveled / 100;
+
+    let percentage = (distanceTraveledInMeteres / neededDistance) * 100;
+
+    console.log(`You travelled ${percentage.toFixed(2)}% of the distance!`);
     
 
-    console.log(distanceTraveled);
     
 }
-
 
 
 fuckinDistance([ 
