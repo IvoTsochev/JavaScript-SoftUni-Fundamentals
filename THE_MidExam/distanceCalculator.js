@@ -5,9 +5,10 @@ function fuckinDistance(arr) {
 
     let distanceTraveled = 0;
 
-    let counter = 0;
+    let counter = 1;
 
-    while (counter < steps) {
+    //calculating the distance in cm
+    while (counter <= steps) {
         if (counter % 5 === 0) {
             distanceTraveled += stepLength * 0.7;
         } else {
@@ -15,15 +16,13 @@ function fuckinDistance(arr) {
         }
         counter++
     }
-
+    //distance in meters
     let distanceTraveledInMeteres = distanceTraveled / 100;
 
+    //percentage of the needed distance
     let percentage = (distanceTraveledInMeteres / neededDistance) * 100;
 
     console.log(`You travelled ${percentage.toFixed(2)}% of the distance!`);
-    
-
-    
 }
 
 
