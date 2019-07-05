@@ -1,0 +1,3 @@
+person{}
+person.hasOwnProperty('name') - проверява дали обекта person има key 'name' (true/false)
+
