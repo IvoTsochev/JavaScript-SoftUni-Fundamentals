@@ -1,6 +1,3 @@
-//not sorted
-
-
 function wordTracker(input) {
     
     let words = input
@@ -11,7 +8,6 @@ function wordTracker(input) {
         for (let word of words) {
             wordsCount[word] = 0;
         }
-
     
     for (let currentWord of input) {
         if (wordsCount.hasOwnProperty(currentWord)) {
@@ -19,11 +15,23 @@ function wordTracker(input) {
         }
     }
     
+    let sortedWords = Object.entries(wordsCount)
+        .sort((firstPair, secondPair) =>{
+            let [ firstWord, firstOccurence ] = firstPair;
+            let [ secondWord, secondOccurence ] = secondPair;
+
+            return secondOccurence - firstOccurence;
+        });
+
+    for (let [ word, occurance] of sortedWords) {
+        console.log(`${word} - ${occurance}`);
+        
+    }
 }
 
 wordTracker(
         [
-        'this sentence',
+        'sentence this',
         'In','this','sentence','you','have','to','count','the','occurances','of','the'
         ,'words','this','and','sentence','because','this','is','your','task'
         ]
