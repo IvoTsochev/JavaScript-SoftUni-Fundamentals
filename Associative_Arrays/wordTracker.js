@@ -2,43 +2,21 @@
 
 
 function wordTracker(input) {
-    let array = input.slice(0);
-    let searchedWords = array
+    
+    let words = input
         .shift()
         .split(" ");
-    let firstWord = searchedWords[0];
-    let secondWord = searchedWords[1];
-    let counter = {
-        [firstWord]: 0,
-        [secondWord]: 0,
-    };
 
-    for (let element of array) {
-        if (firstWord === element) {
-            counter[firstWord] += 1;
+        let wordsCount = {};
+        for (let word of words) {
+            wordsCount[word] = 0;
         }
-        if (secondWord === element) {
-            counter[secondWord] += 1;
-        }
-    }
-        
-    let sortableCounter = [];
-    for (let num in counter) {
-        sortableCounter.push(num, counter[num]);
-    }
 
-    sortableCounter.sort((a, b) => a - b);
     
-    let anotherObject= {};
-    for (let i = 0; i < sortableCounter.length; i += 2) {
-        anotherObject[sortableCounter[i]] = sortableCounter[i + 1];
-    }
-
-    let entries = Object.entries(anotherObject);
-
-    for (let [key, value] of entries) {
-        console.log(`${key} - ${value}`);
-        
+    for (let currentWord of input) {
+        if (wordsCount.hasOwnProperty(currentWord)) {
+            wordsCount[currentWord]++;
+        }
     }
     
 }
@@ -46,8 +24,8 @@ function wordTracker(input) {
 wordTracker(
         [
         'this sentence',
-        'In','this','sentence', `sentence`, `sentence`,'you','have','to','count','the','occurances','of','the'
-        ,'words','this','and','sentence','because','this','is','your','task`, `sentence` , `sentence`'
+        'In','this','sentence','you','have','to','count','the','occurances','of','the'
+        ,'words','this','and','sentence','because','this','is','your','task'
         ]
         
 );

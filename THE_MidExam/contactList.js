@@ -14,27 +14,33 @@ function solve(arr) {
                     totalContacts.push(name);
                 } else {
                     totalContacts.splice(fuckinIndex, 0, name);
+
+                    
                 }
             }
-        } else if (command === `Remove`) {
+        } 
+        if (command === `Remove`) {
             let indexToRemove = line[1];
             if (indexToRemove >= 0 && indexToRemove <= totalContacts.length) {
                 totalContacts.splice(indexToRemove, 1);
             }
-        } else if (command === "Export") {
-            let startingIndex = Number(line[1]);
+        } 
+         if (command === "Export") {
+            let startingIndex = Number(line[1]);            
             let endingIndex = Number(line[2]);
-            
-            if (endingIndex > totalContacts.length) {
+            if (endingIndex > totalContacts.length) {                 
                 endingIndex = totalContacts.length;
             }
+            // endingIndex += 1;    
+
             //не е зададено да правим проверка на започващия индекс, но все пак
             if (startingIndex >= 0 && startingIndex <= totalContacts.length) {
-                // endingIndex += 1;
                 let exportedArray = totalContacts.slice(startingIndex, endingIndex)
                 console.log(exportedArray.join(" "));
             }
-        } else if (command = `Print`) {
+        
+        } 
+         if (command = `Print`) {
             let printType = line[1];
             if (printType === `Normal`) {
                 console.log(`Contacts: ${totalContacts.join(" ")}`);
