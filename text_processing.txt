@@ -1,0 +1,7 @@
+"some string".split(" ").filter(Boolean); - премахва всички whitespaces от стринга
+"some string".split(" ").filter(el => el);
+"some string".split(" ").filter(el => el !== "");
+
+.substring(start, ?end) - взима част от стринг; end е индекс, а не дължина
+
+.substr(0, 1) - взима част от стринг; 1 e дължина, а не индекс

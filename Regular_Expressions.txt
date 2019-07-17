@@ -1,0 +1,1 @@
+let allWhiteSpaces = /\s+/g;  - маркира всички whitespaces в стринга
