@@ -1,1 +1,3 @@
 let allWhiteSpaces = /\s+/g;  - маркира всички whitespaces в стринга
+
+.split(/(?=[A-Z])/).join(", "); - сплитване на стринг по главна буква
