@@ -1,20 +1,25 @@
-//not finished
 
 function findTheWord (theWord, text) {
     let splittedText = text.split(' ');
-    let output = `${theWord} not found!`
-    let originalWord = theWord;
+
+    let isFound = false;
 
     for (let word of splittedText) {
-        if (word.toLowerCase() == theWord.toLowerCase()) {
-            output = `${originalWord}`;
-            console.log(output);
+        if (word.toLowerCase() === theWord.toLowerCase()) {
+            isFound = true;
             break;
-        } 
+        }
+    }
+
+    if (isFound) {
+        console.log(theWord);
+    } else {
+        console.log(`${theWord} not found!`);
     }
 
 }
 
 findTheWord(
-            'python',
-            'JavaScript is the best programming language');
+    'python',
+    'JavaScript is the best programming language'
+    );
