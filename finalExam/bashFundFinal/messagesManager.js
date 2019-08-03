@@ -1,5 +1,5 @@
 function solve (input) {
-    // body
+    
 }
 
 solve(
